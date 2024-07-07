@@ -7,9 +7,10 @@ from rest_framework.views import APIView
 from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from .models import User, Organisation
-from .serializers import UserSerializer, OrganisationSerializer
+from .serializers import UserSerializer, OrganisationSerializer, LoginSerializer
 
-class RegisterUserView(APIView):
+class RegisterUserView(generics.CreateAPIView):
+    serializer_class = UserSerializer
     def post(self, request, *args, **kwargs):
         serializer = UserSerializer(data=request.data)
         if serializer.is_valid():
@@ -29,7 +30,8 @@ class RegisterUserView(APIView):
             'errors': serializer.errors
         }, status=status.HTTP_400_BAD_REQUEST)
 
-class LoginView(APIView):
+class LoginView(generics.GenericAPIView):
+    serializer_class=LoginSerializer
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
         password = request.data.get('password')
