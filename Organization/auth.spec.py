@@ -27,7 +27,7 @@ def test_login_user_success():
         "email": "john.doe@example.com",
         "password": "password123"
     }
-    response = requests.post(f'{BASE_URL}/auth/login/', json=payload)
+    response = requests.post(f'https://steph001.pythonanywhere.com/auth/login/', json=payload)
     assert response.status_code == 200
     data = response.json()
     assert data['status'] == 'success'
@@ -39,7 +39,7 @@ def test_register_user_missing_fields():
         "firstName": "John",
         "lastName": "Doe"
     }
-    response = requests.post(f'{BASE_URL}/auth/register/', json=payload)
+    response = requests.post(f'/auth/register/', json=payload)
     assert response.status_code == 400
     data = response.json()
     assert data['status'] == 'Bad request'
