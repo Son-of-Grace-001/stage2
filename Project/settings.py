@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-gwrz4e)mh=$(&+^vdw$hr*d-w(g_%$3-hpd8+u^tdse5vk5_#)'
+SECRET_KEY = config("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -88,7 +88,7 @@ WSGI_APPLICATION = 'Project.wsgi.application'
 
 
 DATABASES = {
-    "default": dj_database_url.parse('postgresql://stage2_oys8_user:W1bp555fHSBpdElb9DSXRExKFhcDPXWJ@dpg-cq5elp88fa8c7386asl0-a.oregon-postgres.render.com/stage2_oys8'),
+    "default": dj_database_url.parse(config("external_url")),
 }
 
 # Password validation
